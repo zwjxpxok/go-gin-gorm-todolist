@@ -18,7 +18,6 @@ func SetUpRouters() *gin.Engine {
 
 	v1group := router.Group("v1")
 	{
-		//todo
 		//添加
 		v1group.POST("/todo", controller.CreateATodo)
 		//查看所有的待办事项
