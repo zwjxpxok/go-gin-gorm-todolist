@@ -12,9 +12,12 @@ func IndexHandler(c *gin.Context) {
 func CreateATodo(context *gin.Context) {
 	//从请求中取出数据
 	var todo models.Todo
-	context.BindJSON(&todo)
+	err := context.BindJSON(&todo)
+	if err != nil {
+		return
+	}
 	//存入数据库
-	err := models.CreateATodo(&todo)
+	err = models.CreateATodo(&todo)
 	if err != nil {
 		context.JSON(http.StatusOK, gin.H{
 			"error": err.Error(),
